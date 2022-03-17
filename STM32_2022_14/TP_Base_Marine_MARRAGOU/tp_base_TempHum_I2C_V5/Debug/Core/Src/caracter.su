@@ -1,0 +1,3 @@
+caracter.c:3:6:Reverse	32	static
+caracter.c:18:5:IntToStr	32	static
+caracter.c:35:6:FloatToStr	48	static
