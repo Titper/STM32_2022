@@ -1,7 +1,7 @@
 # STM32_2022
 BE STM32
 
-Pour mettre ces modification :
+Pour mettre ces modifications :
 git pull . 
 git add . 
 git commit -m "nom du commit"
