@@ -15,8 +15,6 @@ CR TPs de Base Composants I2C OneWire E/R US
 CR BE
 Organisation fonctionnelle (schéma fonctionnel)
 Schéma de cablâge
-Vidéo <3mns
+Diapos (Présentation orale du BE)
+Vidéo < 3mns
 
-RAPPORT :
-Faire Schéma opérationnel et électrique
-faire une vidéo
