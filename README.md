@@ -11,6 +11,11 @@ Pour prendre le dossier sur son ordi :
 ce mettre sur dans son dossier avec GIT BASH
 et faire : git pull
 
+CR TPs de Base Composants I2C OneWire E/R US
+CR BE
+Organisation fonctionnelle (schéma fonctionnel)
+Schéma de cablâge
+Vidéo <3mns
 
 RAPPORT :
 Faire Schéma opérationnel et électrique
