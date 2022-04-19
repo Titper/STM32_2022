@@ -1,0 +1,8 @@
+main.c:72:5:main	24	static
+main.c:138:6:SystemClock_Config	96	static
+main.c:186:13:MX_ADC1_Init	48	static
+main.c:250:13:MX_USART2_UART_Init	8	static
+main.c:285:13:MX_GPIO_Init	48	static
+main.c:331:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:342:6:pump_turnOn	8	static
+main.c:349:6:pump_turnOff	8	static
