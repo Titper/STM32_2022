@@ -23,7 +23,7 @@ Including :
 - DHT22 (OneWire)  
 - Grove Digital Light Sensor V1.0 (I2C)  
 - 2x STM32L476  
-- 2x X-Nucleo IDW04A1 (Wifi)
+- 2x Digilent PMod (SPI & Wifi)
 - Grove LCD RGB Backlight V4.0 (I2C)  
             
 Project : 
