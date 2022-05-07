@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lib_lcd.h"
+#include <TSL2561.h>
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -54,8 +55,13 @@ uint8_t TH;
 uint8_t TL;
 uint8_t SUM;
 uint8_t check;
+uint32_t lux = 0;
 char tabH[20]; //tableau de caractère pour l'humidité à afficher sur le LCD
 char tabT[20]; //tableau de caractère pour la température à afficher sur le LCD
+char tabL[20]; //tableau de caractère pour la luminosité à afficher sur le LCD
+UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
+uint8_t send_buffer[100] = "";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -178,36 +184,16 @@ void DHT22_Read_Data (uint8_t *data)
   	 }
 }
 
-void DHT22_Display_Data(void)
+void Display_Data(void)
 {
-	sprintf(tabH,"Humidite: %.1f ", Humidite);
+	clearlcd();
+	Delay_us(1000);
+	sprintf(tabH,"Lum.: %.1lu lux   ", lux);
 	sprintf(tabT, "Temp.: %.1f C   ", Temperature);
 	lcd_position(&hi2c1, 0, 0);
 	lcd_print(&hi2c1, tabH);
-	lcd_print(&hi2c1, "%");
 	lcd_position(&hi2c1, 0, 1);
 	lcd_print(&hi2c1, tabT);
-}
-
-void Mesure_Lum_TSL2561(double Val[4])
-{
-	HAL_StatusTypeDef Ready;//Afin d'utiliser les fonctions de HAL_I2C
-
-	uint8_t DATALOW0 = 0x8C;//Registre de commande cf Datasheet
-	uint8_t DATAHIGH0 = 0x8D;
-	uint8_t DATAHIGH1 = 0x8F;
-	uint8_t DATALOW1 = 0x8E;
-	uint8_t Info[4] = {DATALOW0, DATAHIGH0, DATALOW1, DATAHIGH1};//Groupement des registres
-	uint8_t Converted[4] = {0};//Réceptionne la réponse du capteur
-
-	uint16_t Sensor_Adress = 0x39<<1;//Adresse propre du capteur
-
-	//Adressage
-	Ready = HAL_I2C_Master_Transmit(&hi2c1, Sensor_Adress, Info, 4, 1000);//Commande
-	HAL_Delay(20); //Attente entre mesures
-
-	//Réponse du capteur
-	Ready = HAL_I2C_Master_Receive(&hi2c1, Sensor_Adress, Converted, 1, 1000);//Réception des données
 }
 /* USER CODE END 0 */
 
@@ -218,6 +204,7 @@ void Mesure_Lum_TSL2561(double Val[4])
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -226,7 +213,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  double Tab[4] = {0};//Tableau pour le main
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -245,6 +232,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim2);//initialisation timer
   lcd_init(&hi2c1, &lcdData); //initialisation lcd
+  I2C_DEV_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -277,11 +265,10 @@ int main(void)
 	  	 	  	//combiner 2 octets de température et diviser resultat par 10 pour avoir température en °C
 	  	 	  	Temperature = (float) ((TH<<8) | TL) / 10;
 
-	  	 	  	DHT22_Display_Data();//afficher température sur LCD
+	  	 	  	Display_Data();//afficher température sur LCD
 	  	 	 }
 	  	 }
-
-	  	 Mesure_Lum_TSL2561(Tab);//Appel de la fonction
+	  	 lux  =  calculateLux(2,NOM_INTEG_CYCLE);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

@@ -14,12 +14,12 @@ extern uint16_t Channel_0, Channel_1;
 	 
 	 
 // I2C address options
-#define ADDR_LOW          0x29
-#define ADDR_FLOAT        0x39    // Default address (pin left floating)
+#define ADDR_LOW          0x39
+#define ADDR_FLOAT        0x29    // Default address (pin left floating)
 #define ADDR_HIGH         0x49
 
-#define ADDR_FLOAT_Write 0x39
-#define ADDR_FLOAT_Read	 0x40
+#define ADDR_FLOAT_Write 0x53
+#define ADDR_FLOAT_Read	 0x52
 	 
 //---------------------------------------------------
 // x       xx      xxxxx 

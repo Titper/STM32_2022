@@ -53,6 +53,7 @@ char tabT[20]; //tableau de caractère pour la température à afficher sur le L
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 uint8_t send_buffer[100] = "";
+uint8_t send_buffer1[100] = "";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -108,16 +109,19 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   lcd_init(&hi2c1, &lcdData); //initialisation lcd
+  //HAL_UART_Transmit(&huart1, (uint8_t*)"AT+RST\r\n", strlen("AT+RST\r\n"), 100);
+  //HAL_UART_Receive(&huart1, send_buffer, 50, 100);
+  //memset(send_buffer, 0, 15);
+  //HAL_UART_Transmit(&huart1, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), 100);
+  HAL_UART_Transmit(&huart1, (uint8_t*)"AT+CWJAP=\"AndroidAPD220\",\"yjai1186\"\r\n", strlen("AT+CWJAP=\"AndroidAPD220\",\"yjai1186\"\r\n"), 100);
+  HAL_UART_Receive(&huart1, send_buffer1, 100, 100);
   /* USER CODE END 2 */
-  //ESP_Init ("AndroidAPD220", "yjai1186");
-  HAL_UART_Transmit(&huart1,(uint8_t*)"AT\r\n", strlen("AT\r\n"), 100);
-  HAL_UART_Receive(&huart1,(uint8_t*)send_buffer, strlen((char *)send_buffer), 2000);
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	  Server_Start();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
