@@ -115,8 +115,9 @@ int main(void)
 	    	  ret = HAL_I2C_Master_Receive(&hi2c1, TMP2_ADDR, buf, 2, HAL_MAX_DELAY);
 
 	    	  if ( ret != HAL_OK ) {
-	    	          strcpy((char*)buf, "Error\r\n");
-	    	        } else {
+	    		  strcpy((char*)buf, "Error\r\n");
+	    	  }
+	    	  else {
 	    	        	//Combine the bytes
 	    	        	val = ((int16_t)buf[0] << 4) | (buf[1] >> 4);
 
@@ -132,15 +133,16 @@ int main(void)
 	    	        	temp_c *= 1000;
 	    	        	// sprintf((char*)buf, "Temp : %u.%02u C", ((unsigned int)temp_c / 100), ((unsigned int)temp_c % 100));
 	    	        }
+
 	      }
-/*       lcd_position(&hi2c1,0,0);
+       lcd_position(&hi2c1,0,0);
 	   lcd_print(&hi2c1,buf);
-	   reglagecouleur(0,0,255);*/
+	   reglagecouleur(0,0,255);
 
 
     /* USER CODE END WHILE */
 	  HAL_Delay(1000);
-	  //clearlcd();
+	  clearlcd();
 
     /* USER CODE BEGIN 3 */
   }

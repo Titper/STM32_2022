@@ -60,8 +60,8 @@ all: main-build
 main-build: TP_BE_init_1.elf secondary-outputs
 
 # Tool invocations
-TP_BE_init_1.elf: $(OBJS) $(USER_OBJS) C:\Users\G45\Documents\STM32_2022_13\TP_BE_init_1\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TP_BE_init_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\G45\Documents\STM32_2022_13\TP_BE_init_1\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TP_BE_init_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TP_BE_init_1.elf: $(OBJS) $(USER_OBJS) C:\Users\marlo\Desktop\Universite_de_Toulouse\M1\ SME\S8\BE_Realisation_systeme\GIT_prof_BE\STM32_2022\STM32_2022_13\Gestion\ projet\Progs\TP_BE_init_1\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TP_BE_init_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\marlo\Desktop\Universite_de_Toulouse\M1 SME\S8\BE_Realisation_systeme\GIT_prof_BE\STM32_2022\STM32_2022_13\Gestion projet\Progs\TP_BE_init_1\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TP_BE_init_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
